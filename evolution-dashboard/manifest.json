@@ -1,0 +1,15 @@
+{
+  "name": "Gene Keys Evolution Dashboard",
+  "short_name": "Gene Keys",
+  "description": "A living map of your Gene Keys shadows, gifts & awakening — synced across all your devices.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0d12",
+  "theme_color": "#0b0d12",
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
+  ]
+}
