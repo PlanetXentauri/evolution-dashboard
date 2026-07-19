@@ -12,8 +12,8 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="Gene Keys">
-<link rel="apple-touch-icon" href="icon.svg">
-<link rel="icon" type="image/svg+xml" href="icon.svg">
+<link rel="apple-touch-icon" href="logo.png">
+<link rel="icon" type="image/png" href="logo.png">
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -88,6 +88,8 @@ a{color:inherit}
 .brand .orb{width:26px;height:26px;border-radius:50%;
   background:conic-gradient(from 0deg,var(--siddhi),var(--activation),var(--gift),var(--siddhi-2),var(--venus),var(--siddhi));
   box-shadow:0 0 18px rgba(160,123,230,.6);flex:0 0 auto}
+.brand .brandlogo{width:30px;height:30px;object-fit:contain;flex:0 0 auto;
+  filter:drop-shadow(0 0 7px rgba(90,169,230,.45))}
 .navlinks{display:flex;gap:6px;margin-left:auto;flex-wrap:wrap}
 .navlinks a{font-size:16px;letter-spacing:.3px;color:var(--muted);text-decoration:none;
   padding:7px 12px;border-radius:9px;transition:.2s;white-space:nowrap}
@@ -262,14 +264,33 @@ footer .fq{font-family:var(--serif);font-style:italic;font-size:17px;color:var(-
   background:var(--panel-solid);border:1px solid var(--siddhi);color:var(--txt);padding:12px 22px;border-radius:100px;
   font-size:16.5px;z-index:100;transition:.3s;box-shadow:0 10px 40px rgba(0,0,0,.5);pointer-events:none}
 .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+/* scrolling side name indicator */
+.sidename{position:fixed;left:8px;top:50%;transform:translateY(-50%);z-index:35;pointer-events:none;
+  writing-mode:vertical-rl;text-orientation:mixed;font-family:var(--serif);font-weight:600;
+  font-size:16px;letter-spacing:6px;text-transform:uppercase;opacity:.42;transition:color .5s ease,opacity .5s ease;
+  user-select:none;text-shadow:0 2px 14px rgba(0,0,0,.7);white-space:nowrap}
+.sidename .who{transform:rotate(180deg)}
+.sidename.dreco{color:var(--siddhi-2)}
+.sidename.brittany{color:var(--venus)}
+.sidename::before{content:"";position:absolute;top:-26px;left:50%;transform:translateX(-50%);
+  width:1px;height:18px;background:currentColor;opacity:.5}
+.sidename::after{content:"";position:absolute;bottom:-26px;left:50%;transform:translateX(-50%);
+  width:1px;height:18px;background:currentColor;opacity:.5}
+@media(max-width:900px){.sidename{font-size:12.5px;letter-spacing:3px;left:3px;opacity:.34}}
+/* profile divider */
+.pdivider{position:relative;z-index:1;text-align:center;padding:20px 0 0;margin-top:30px}
+.pdivider .pd-line{height:1px;background:linear-gradient(90deg,transparent,var(--border-str),transparent);max-width:680px;margin:0 auto}
+.pdivider .pd-badge{display:inline-block;margin-top:-13px;background:var(--panel-solid);border:1px solid var(--border-str);
+  border-radius:100px;padding:7px 20px;font-family:var(--serif);font-size:16px;letter-spacing:2px;color:var(--venus)}
 </style>
 </head>
 <body class="font-inter">
 <div class="cosmicbg"></div>
 <canvas class="starfield" id="stars"></canvas>
+<div class="sidename dreco" id="sidename"><span class="who" id="sidename-text">Dreco</span></div>
 
 <div class="topbar"><div class="wrap">
-  <div class="brand"><span class="orb"></span> Evolution Dashboard</div>
+  <div class="brand"><img src="logo.png" class="brandlogo" alt="Gene Keys DNA logo"> Evolution Dashboard</div>
   <div class="sync connecting" id="sync" title="Cloud sync status"><span class="sdot"></span><span id="sync-label">connecting…</span></div>
   <nav class="navlinks">
     <a href="#map">🗺️ Map</a>
@@ -414,210 +435,412 @@ footer .fq{font-family:var(--serif);font-style:italic;font-size:17px;color:var(-
   <div class="future-grid" id="future-grid"></div>
 </div></section>
 
-<!-- BRITTANY PROFILE -->
-<section id="brittany"><div class="wrap">
+<!-- ==================== PROFILE DIVIDER ==================== -->
+<div class="pdivider"><div class="pd-line"></div><div class="pd-badge">✦ her profile ✦</div></div>
+
+<!-- ==================== BRITTANY — FULL PROFILE ==================== -->
+<header class="hero" id="brittany"><div class="wrap">
+  <div class="kicker">🧬 Hologenetic Profile · Golden Path 🧬</div>
+  <h1>Brittany <span class="grad">Rose</span></h1>
+  <div class="sub">a living map of her shadows, gifts &amp; awakening</div>
+  <div class="birthchip">
+    <span>🗓 <b>25 May 1993</b></span>
+    <span>🕔 <b>5:11 AM</b></span>
+    <span>📍 <b>Jacksonville, Florida, USA</b></span>
+    <span class="sync connecting" id="b-sync" title="Cloud sync status"><span class="sdot"></span><span id="b-sync-label">connecting…</span></span>
+  </div>
+  <p class="hero-quote">"Within your DNA lies a great secret, and a great gift. The Gene Keys are an invitation to unlock the higher purpose concealed inside your challenges."</p>
+</div></header>
+
+<!-- her constellation -->
+<div class="mapwrap" id="b-map"><div class="wrap" style="padding:0">
+  <div class="mapcard">
+    <svg class="constellation" id="b-constellation" viewBox="0 0 760 560"></svg>
+  </div>
+  <div class="maplegend">
+    <span><i class="dot" style="background:var(--activation)"></i> Activation Sequence</span>
+    <span><i class="dot" style="background:var(--venus)"></i> Venus Sequence</span>
+    <span><i class="dot" style="background:var(--pearl)"></i> Pearl Sequence</span>
+    <span style="color:var(--faint)">tap a sphere to open it below</span>
+  </div>
+</div></div>
+
+<!-- her frequency field -->
+<section id="b-field"><div class="wrap">
   <div class="sec-head">
-    <div class="eyebrow">🌙 A second constellation · shared for contemplation</div>
-    <h2>Brittany <span class="grad">— her Hologenetic Profile</span></h2>
-    <p>Brittany's complete Gene Keys map — the same <b style="color:var(--shadow)">Shadow</b> → <b style="color:var(--gift)">Gift</b> → <b style="color:var(--siddhi)">Siddhi</b> journey, drawn from her own genekeys.com profile and made for her. Tap any sphere to open its three frequencies and the genius hidden inside.</p>
-    <div class="birthchip">
-      <span>🗓 <b>25 May 1993</b></span>
-      <span>🕔 <b>5:11 AM</b></span>
-      <span>📍 <b>Jacksonville, Florida, USA</b></span>
+    <div class="eyebrow">📶 Her living frequency field</div>
+    <h2>Where Brittany is on the spectrum</h2>
+    <p>Every Gene Key vibrates at three frequencies — the <b style="color:var(--shadow)">Shadow</b> (unconscious pattern), the <b style="color:var(--gift)">Gift</b> (creative genius), and the <b style="color:var(--siddhi)">Siddhi</b> (transcendent essence). As she contemplates each sphere, she marks where she senses herself today. This field is hers and updates in real time.</p>
+  </div>
+  <div class="field-grid">
+    <div class="card">
+      <h3>📶 Frequency Spectrum</h3>
+      <div class="lead">A live snapshot across all 11 spheres of her profile.</div>
+      <div class="spectrum" id="b-spectrum">
+        <div class="sp-shadow" style="width:100%"></div>
+        <div class="sp-gift" style="width:0%"></div>
+        <div class="sp-siddhi" style="width:0%"></div>
+      </div>
+      <div class="freq-legend">
+        <div><span class="n" style="color:var(--shadow)" id="b-c-shadow">11</span><span class="l">🌑 Shadow</span></div>
+        <div><span class="n" style="color:var(--gift)" id="b-c-gift">0</span><span class="l">🎁 Gift</span></div>
+        <div><span class="n" style="color:var(--siddhi)" id="b-c-siddhi">0</span><span class="l">✨ Siddhi</span></div>
+      </div>
+      <p class="hint">Everyone begins in Shadow — the raw material of transformation. Nothing here is "bad"; the Shadow is where the Gift is hidden.</p>
+    </div>
+    <div class="card contempl-stat">
+      <div class="stat-row"><span class="big" id="b-stat-entries">0</span><span class="cap">contemplations logged</span></div>
+      <div class="stat-row"><span class="big" id="b-stat-days" style="color:var(--gift)">0</span><span class="cap">days on the path</span></div>
+      <div class="stat-row"><span class="big" id="b-stat-active" style="color:var(--activation)">0</span><span class="cap">spheres she's engaged</span></div>
+      <p class="hint">Her data lives in this file &amp; her browser, separate from Dreco's. Use <b>Export</b> below to save a backup.</p>
     </div>
   </div>
-
-  <div class="field-grid" id="brit-seqcards" style="grid-template-columns:1fr 1fr 1fr;gap:16px"></div>
-
-  <div class="sec-head" style="margin-top:38px;margin-bottom:18px">
-    <span class="seq-tag tag-activation">☀️ Activation Sequence · The Four Prime Gifts</span>
-    <h2 style="font-size:clamp(22px,2.6vw,28px)">Her genius</h2>
-  </div>
-  <div class="spheres" id="brit-activation"></div>
-
-  <div class="sec-head" style="margin-top:38px;margin-bottom:18px">
-    <span class="seq-tag tag-venus">💗 Venus Sequence · The Pathway of the Heart</span>
-    <h2 style="font-size:clamp(22px,2.6vw,28px)">Her heart</h2>
-  </div>
-  <div class="spheres" id="brit-venus"></div>
-
-  <div class="sec-head" style="margin-top:38px;margin-bottom:18px">
-    <span class="seq-tag tag-pearl">🐚 Pearl Sequence · The Pathway of Prosperity</span>
-    <h2 style="font-size:clamp(22px,2.6vw,28px)">Her prosperity</h2>
-  </div>
-  <div class="spheres" id="brit-pearl"></div>
-
-  <div id="brit-starpearl" style="margin-top:38px"></div>
 </div></section>
 
-<script>
+<!-- her sequence summaries -->
+<section id="b-sequences"><div class="wrap">
+  <div class="sec-head">
+    <div class="eyebrow">🧭 The three golden threads</div>
+    <h2>Her sequences at a glance</h2>
+  </div>
+  <div class="field-grid" id="brit-seqcards" style="grid-template-columns:1fr 1fr 1fr;gap:16px"></div>
+</div></section>
+
+<!-- activation -->
+<section id="b-activation"><div class="wrap">
+  <div class="sec-head">
+    <span class="seq-tag tag-activation">☀️ Activation Sequence · The Four Prime Gifts</span>
+    <h2>Unlocking her genius</h2>
+    <p>The foundation of her journey — her core creative purpose, the challenge that evolves her, how she radiates vitality, and the deep purpose that stabilises her. Each carries her own genius reading from the profile.</p>
+  </div>
+  <div class="spheres" id="brit-activation"></div>
+</div></section>
+
+<!-- venus -->
+<section id="b-venus"><div class="wrap">
+  <div class="sec-head">
+    <span class="seq-tag tag-venus">💗 Venus Sequence · The Pathway of the Heart</span>
+    <h2>Opening her heart</h2>
+    <p>The emotional and relational layer — how she attracts others, how she thinks, feels, and integrates under pressure, down to the Core Wound that holds her greatest gift.</p>
+  </div>
+  <div class="spheres" id="brit-venus"></div>
+</div></section>
+
+<!-- pearl -->
+<section id="b-pearl"><div class="wrap">
+  <div class="sec-head">
+    <span class="seq-tag tag-pearl">🐚 Pearl Sequence · The Pathway of Prosperity</span>
+    <h2>Living her service</h2>
+    <p>The culmination — where purpose meets the world. Her vocation, her relationship with culture and environment, and the Pearl: the natural prosperity that flows when she serves from her essence.</p>
+  </div>
+  <div class="spheres" id="brit-pearl"></div>
+</div></section>
+
+<!-- her journal -->
+<section id="b-journal"><div class="wrap">
+  <div class="sec-head">
+    <div class="eyebrow">📔 Track her transformation</div>
+    <h2>📔 Contemplation Journal</h2>
+    <p>The Gene Keys unlock through contemplation over time, not analysis. Log what she notices — a shadow surfacing, a gift landing, a moment of grace — and watch her evolution take shape.</p>
+  </div>
+  <div class="journal-grid">
+    <div class="card jform">
+      <label>🔑 Which sphere / gene key?</label>
+      <select id="b-j-key"></select>
+      <label>📶 What frequency did she notice?</label>
+      <div class="fp-btns" id="b-j-freq">
+        <button data-f="shadow">🌑 Shadow</button>
+        <button data-f="gift" class="on-gift">🎁 Gift</button>
+        <button data-f="siddhi">✨ Siddhi</button>
+      </div>
+      <label>✍️ Contemplation / reflection</label>
+      <textarea id="b-j-note" placeholder="e.g. Noticed the Shadow of Stress arise before a gathering — paused, felt the pressure, and it softened into stillness…"></textarea>
+      <label>Date</label>
+      <input type="date" id="b-j-date">
+      <div class="btnrow">
+        <button class="btn btn-primary" onclick="bAddEntry()">＋ Add to timeline</button>
+        <button class="btn btn-ghost" onclick="bExport()">⬇ Export backup</button>
+        <button class="btn btn-ghost" onclick="document.getElementById('b-importFile').click()">⬆ Import</button>
+        <input type="file" id="b-importFile" accept="application/json" style="display:none" onchange="bImport(event)">
+      </div>
+    </div>
+    <div class="card">
+      <h3 style="margin-bottom:16px">🕰️ Her Timeline</h3>
+      <div class="timeline" id="b-timeline"><div class="tl-empty">Her journey begins with a single contemplation.</div></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- her star pearl -->
+<section id="b-starpearl"><div class="wrap">
+  <div class="sec-head">
+    <div class="eyebrow">⭐ The next octave</div>
+    <h2>Her Star Pearl</h2>
+  </div>
+  <div id="brit-starpearl"></div>
+</div></section>
+
+<script type="module">
 /* ============================================================
-   BRITTANY — Hologenetic Profile (static reference view)
-   Data transcribed from her genekeys.com profile PDF.
-   Independent of the sync layer above — a contemplation map.
+   BRITTANY — full Hologenetic engine (own state + own cloud)
+   Collections: gkb_freq / gkb_entries / gkb_meta  (named app "britt")
+   Fully independent of Dreco's profile above.
    ============================================================ */
+const BLINES={
+  1:"The Investigator — depth before breadth; must feel secure in its own knowing before it acts.",
+  2:"The Natural — an innate, effortless gift that emerges on its own and is called out by others.",
+  3:"The Martyr — wisdom earned through trial, error and resilience; learning by direct experience.",
+  4:"The Opportunist — a relational line; the gift travels heart to heart through your network.",
+  5:"The Heretic — a universal, projected line; practical, far-reaching, others project a field onto you.",
+  6:"The Role Model — experience, withdrawal, then embodiment; in time you become a living example."
+};
+const BSPH=[
+  {id:"lifeswork",seq:"activation",emoji:"🌟",name:"Life's Work",role:"How she's here to shine & create in the world",desig:"Activation · Conscious Sun",key:20,line:5,linekey:"Fixer",x:380,y:70,
+    shadow:"Superficiality",gift:"Self-Assurance",siddhi:"Presence",
+    sd:"Living on the surface — filling the moment with busyness or words, acting on autopilot rather than being truly present.",
+    gd:"Effortless self-assurance in the now. She improvises brilliantly under pressure, fully present, trusting her reflexes where others freeze.",
+    si:"Presence itself — pure being with no agenda. Action and stillness become one and life simply moves through her.",
+    genius:"Her gift is to improvise in the present moment. She thrives in extreme situations when others wilt. With Self-Assurance as her Life's Work, she needs an occupation that challenges her by testing her reflexes — when she is fully in her own centre, nothing can disturb her focus on what is right in front of her. This Gift comes alive in the present, so she can't plan what she'll say or do; she simply sees what happens."},
+  {id:"evolution",seq:"activation",emoji:"🧗",name:"Evolution",role:"The core challenge that catalyses her growth",desig:"Activation · Conscious Earth",key:34,line:5,linekey:"Power & Projection",x:610,y:300,
+    shadow:"Force",gift:"Strength",siddhi:"Majesty",
+    sd:"Raw force — pushing, overpowering, or acting from restlessness and ego rather than true alignment.",
+    gd:"Strength in right action. She moves with natural power and efficiency, doing what is authentically hers to do.",
+    si:"Majesty — power surrendered to the whole; strength becomes a dignified, effortless radiance.",
+    genius:"Her challenge is to always keep herself occupied — she is a creature of action, and the moment she overthinks her life she gets tangled. Worry is her archenemy; when she worries she misses how beautiful life is right now. If she feels frustrated it's because she's not in action — so take action! It barely matters what, as long as her body keeps moving. She's a master of efficiency, with a knack for doing anything in the way that meets least resistance, and out of her head it brings her great recognition."},
+  {id:"radiance",seq:"activation",emoji:"☀️",name:"Radiance",role:"Her health, vitality & how she radiates when aligned",desig:"Activation · Design Sun",key:37,line:1,linekey:"Isolation / Care",x:150,y:300,
+    shadow:"Weakness",gift:"Equality",siddhi:"Tenderness",
+    sd:"Weakness — bargaining in relationships, giving in order to receive, or collapsing under the need for warmth and belonging.",
+    gd:"Equality and warmth. She builds family and belonging wherever she goes, giving from genuine friendliness rather than obligation.",
+    si:"Tenderness — unconditional warmth that holds everyone as family, radiating gentle, boundless love.",
+    genius:"One of the most important things for her is to live among other people — as part of a family, group, or business. Living completely alone stresses her inner being and can even affect her physical health; her whole being thrives on human interaction and touch. Solitude still matters, but her natural friendliness needs regular physical, personal expression or she loses energy. Her other key is to let go of giving conditionally — the more unconditionally she gives of herself, the happier and lighter she feels."},
+  {id:"purpose",seq:"activation",emoji:"🎯",name:"Purpose",role:"The deep inner purpose that stabilises her",desig:"Activation · Design Earth",key:40,line:1,linekey:"Physicality (bones)",x:380,y:490,
+    shadow:"Exhaustion",gift:"Resolve",siddhi:"Divine Will",
+    sd:"Exhaustion — over-giving to depletion, unable to say no or set the boundary her body is asking for.",
+    gd:"Resolve. She stands firm in her own needs, bringing grounding and stability to any group she serves.",
+    si:"Divine Will — personal will surrendered to a greater will; rest and action flow in sacred rhythm.",
+    genius:"If she fulfils her Life's Work she'll be instrumental in building something involving a group of people. Her role is critical, because she is the one who stands firm in her own needs — and in taking that stand she brings grounding and stability to the whole group. Her life is a symbol of healthy boundaries and the strength to stand up for oneself. She's here to sing out with the power of her own aloneness, even in the most intimate relationships; and it's in those precious solitary moments that she feels her true purpose most clearly."},
+  {id:"attraction",seq:"venus",emoji:"🧲",name:"Attraction",role:"The wound around which love & relationships gather",desig:"Venus · Design Moon",key:21,line:2,linekey:"Lust / Passion",x:380,y:410,
+    shadow:"Control",gift:"Authority",siddhi:"Valor",
+    sd:"Control — the urge to manage or grip tightly, often from a fear of being controlled herself.",
+    gd:"Authority. She takes fair command of her own domain, leading through earned respect rather than force.",
+    si:"Valor — a fearless heart that acts with noble courage, using power only in service of the whole."},
+  {id:"iq",seq:"venus",emoji:"🧠",name:"IQ",role:"Mental intelligence — how she thinks under pressure",desig:"Venus · Mental",key:51,line:5,linekey:"The Practical mind (defensive)",x:300,y:340,
+    shadow:"Agitation",gift:"Initiative",siddhi:"Awakening",
+    sd:"Agitation — reactive shock and restlessness, thrown off-centre by the unexpected, competing to feel alive.",
+    gd:"Initiative. A pioneer who moves first, using shock and challenge as fuel for courageous new beginnings.",
+    si:"Awakening — every disturbance becomes a doorway to sudden, total awakening."},
+  {id:"eq",seq:"venus",emoji:"💗",name:"EQ",role:"Emotional intelligence — her feeling nature",desig:"Venus · Emotional",key:7,line:1,linekey:"Self-esteem / Self-sabotage",x:460,y:340,
+    shadow:"Division",gift:"Guidance",siddhi:"Virtue",
+    sd:"Division — leadership pulled into self-interest and 'us vs them', pushing an agenda instead of serving the whole.",
+    gd:"Guidance. She leads by seeing the road ahead and lighting the way — guiding through service, not control.",
+    si:"Virtue — leadership as pure alignment, where her very presence becomes the way."},
+  {id:"sq",seq:"venus",emoji:"🕊️",name:"SQ",role:"Spiritual intelligence — where wisdom integrates",desig:"Venus · Integrating",key:51,line:2,linekey:"Freedom (wildness & boundaries)",x:380,y:270,
+    shadow:"Agitation",gift:"Initiative",siddhi:"Awakening",
+    sd:"Agitation — the same restlessness at a deeper layer, testing her freedom against every boundary.",
+    gd:"Initiative. Her wild, pioneering spirit integrates as the courage to begin again and lead from the front.",
+    si:"Awakening — the shock of realisation that liberates her spirit into fearless aliveness."},
+  {id:"core",seq:"venus",emoji:"💎",name:"Core",role:"The Core Wound — her deepest gift in disguise",desig:"Venus · Core Wound",key:52,line:6,linekey:"Stepping beyond Comfort",x:300,y:210,
+    shadow:"Stress",gift:"Restraint",siddhi:"Stillness",
+    sd:"Stress — pressure that won't switch off, a restlessness that struggles to be still and drives her hard.",
+    gd:"Restraint. She harnesses stillness into concentrated, focused power — knowing when to hold and when to act.",
+    si:"Stillness — the mountain at rest; perfect inner quiet from which all right action naturally arises."},
+  {id:"culture",seq:"pearl",emoji:"🌍",name:"Culture",role:"Her relationship with the wider world & environment",desig:"Pearl · Culture",key:48,line:5,linekey:"The Society",x:460,y:210,
+    shadow:"Inadequacy",gift:"Resourcefulness",siddhi:"Wisdom",
+    sd:"Inadequacy — the fear of not being (or knowing) enough, freezing her before she begins.",
+    gd:"Resourcefulness. She draws on a deep well of practical wisdom, finding exactly what's needed when it's needed.",
+    si:"Wisdom — the fathomless depth; a clear channel of timeless, universal knowing."},
+  {id:"pearl",seq:"pearl",emoji:"🦪",name:"Pearl",role:"Natural prosperity that flows from selfless service",desig:"Pearl · The Pearl",key:18,line:2,linekey:"Recognition",x:380,y:160,
+    shadow:"Judgment",gift:"Integrity",siddhi:"Perfection",
+    sd:"Judgment — a critical eye turned harshly on herself and others, fixated on what's wrong.",
+    gd:"Integrity. She sees what can be improved and mends it with love, upholding fairness and healthy patterns for all.",
+    si:"Perfection — seeing the wholeness already present; everything, exactly as it is, is perfect."}
+];
+const B_SEQS=[
+  {c:"activation",tag:"tag-activation",emoji:"☀️",title:"Activation",lead:"Her deepest <b>Purpose</b> is to manifest the <b style='color:var(--gift)'>Gift of Resolve</b>. To realise it she transforms the <b style='color:var(--shadow)'>Shadow of Exhaustion</b>."},
+  {c:"venus",tag:"tag-venus",emoji:"💗",title:"Venus",lead:"In <b>relationships</b> her great challenge is to transform the <b style='color:var(--shadow)'>Shadow of Stress</b> into the <b style='color:var(--gift)'>Gift of Restraint</b>. The highest expression of her heart is <b style='color:var(--siddhi)'>Awakening</b>."},
+  {c:"pearl",tag:"tag-pearl",emoji:"🐚",title:"Pearl",lead:"She unlocks prosperity through her <b style='color:var(--gift)'>Gift of Integrity</b>, and undermines it through the <b style='color:var(--shadow)'>Shadow of Inadequacy</b>. She thrives best in <b>leadership or influence</b>."}
+];
+const B_STARPEARL={
+  summary:"She embodies <b style='color:var(--siddhi)'>Harmony</b> when grounded in her <b style='color:var(--gift)'>Gift of Revolution</b>. As she heals the wound of <b style='color:var(--shadow)'>Hunger</b> in relationships, she awakens the creative essence of <b style='color:var(--siddhi)'>Ascension</b>.",
+  spheres:[
+    {n:"Brand",k:"20.5",s:"Superficiality",g:"Self-Assurance",d:"Presence",lk:"Efficiency"},
+    {n:"Creativity",k:"54.6",s:"Greed",g:"Aspiration",d:"Ascension",lk:"Synchronicity"},
+    {n:"Relating",k:"35.5",s:"Hunger",g:"Adventure",d:"Boundlessness",lk:"Distillation"},
+    {n:"Pearl",k:"18.2",s:"Judgment",g:"Integrity",d:"Perfection",lk:"Recognition"},
+    {n:"Vocation",k:"52.6",s:"Stress",g:"Restraint",d:"Stillness",lk:"Stepping beyond Comfort"},
+    {n:"Culture",k:"48.5",s:"Inadequacy",g:"Resourcefulness",d:"Wisdom",lk:"The Society"},
+    {n:"Stability",k:"49.5",s:"Reaction",g:"Revolution",d:"Rebirth",lk:"Coherence"}
+  ]
+};
+const B_EDGES=[
+  ["lifeswork","pearl"],["pearl","core"],["pearl","culture"],["core","culture"],
+  ["core","sq"],["culture","evolution"],["sq","radiance"],["sq","evolution"],
+  ["sq","eq"],["iq","eq"],["iq","radiance"],["eq","evolution"],["iq","attraction"],
+  ["attraction","purpose"],["lifeswork","radiance"],["lifeswork","evolution"]
+];
+const B_FREQ_COLORS={shadow:"#d1495b",gift:"#3fb58a",siddhi:"#a07be6"};
+const B_SEQ_COLOR={activation:"var(--activation)",venus:"var(--venus)",pearl:"var(--pearl)"};
+const CHEV='<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function borb(seq){var base=seq==="activation"?"90,169,230":seq==="venus"?"224,103,154":"104,195,176";return "radial-gradient(circle at 35% 30%, rgba("+base+",1), rgba("+base+",.55) 60%, rgba("+base+",.25))";}
+
+/* ---- Firebase (own named app + own collections) ---- */
+const bFirebaseConfig={apiKey:"AIzaSyBs8jZeW96DsumVVpK1mANVDvg6-LqUILg",authDomain:"todo-107e0.firebaseapp.com",projectId:"todo-107e0",storageBucket:"todo-107e0.firebasestorage.app",messagingSenderId:"1001442592988",appId:"1:1001442592988:web:1c73371e2a069b4bbd8c19"};
+const BPREFIX="gkb", BC_FREQ=BPREFIX+"_freq", BC_ENTRIES=BPREFIX+"_entries", BC_META=BPREFIX+"_meta";
+const B_MIRROR="gkb_mirror_v1";
+let BSTATE={freq:{},entries:[],started:null};
+let bdb=null,BFB=null;
+
+function bSaveMirror(){try{localStorage.setItem(B_MIRROR,JSON.stringify(BSTATE));}catch(e){}}
+function bLoadMirror(){try{const r=localStorage.getItem(B_MIRROR);if(r)BSTATE=Object.assign(BSTATE,JSON.parse(r));}catch(e){}}
+function bSetSync(kind,label){const el=document.getElementById("b-sync");if(!el)return;el.className="sync "+kind;document.getElementById("b-sync-label").textContent=label;}
+function bEsc(s){return (s||"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
+function bFmtDate(d){const dt=new Date(d+"T00:00:00");return isNaN(dt)?d:dt.toLocaleDateString(undefined,{year:"numeric",month:"short",day:"numeric"});}
+let bToastT;function bToast(m){const t=document.getElementById("toast");if(!t)return;t.textContent=m;t.classList.add("show");clearTimeout(bToastT);bToastT=setTimeout(()=>t.classList.remove("show"),2200);}
+
+/* ---- render: sequence cards ---- */
+function bRenderSeqs(){
+  const sc=document.getElementById("brit-seqcards");if(!sc)return;
+  sc.innerHTML=B_SEQS.map(q=>`<div class="card"><span class="seq-tag ${q.tag}" style="margin-bottom:12px">${q.emoji} ${q.title} Sequence</span><p class="lead" style="margin-bottom:0">${q.lead}</p></div>`).join("");
+}
+/* ---- render: sphere cards ---- */
+function bcard(s){
+  const cur=BSTATE.freq[s.id]||"shadow";
+  const genius=s.genius?`<div class="line-theme" style="border-left-color:var(--siddhi-2);background:rgba(201,169,78,.06)"><b style="color:var(--siddhi-2)">✦ Her genius:</b> ${s.genius}</div>`:"";
+  return `
+  <div class="sphere" id="bsph-${s.id}" data-seq="${s.seq}">
+    <div class="sphere-top" onclick="bToggle('${s.id}')">
+      <div class="keyorb" style="background:${borb(s.seq)}"><span class="num">${s.key}</span><span class="ln">line ${s.line}</span></div>
+      <div class="sphere-meta">
+        <div class="sname">${s.emoji} ${s.name}</div>
+        <div class="srole">${s.role}</div>
+        <div class="sdesig">${s.desig} · ${s.key}.${s.line}</div>
+      </div>${CHEV}
+    </div>
+    <div class="triad-mini"><span class="tm-shadow">${s.shadow}</span><span class="tm-gift">${s.gift}</span><span class="tm-siddhi">${s.siddhi}</span></div>
+    <div class="sphere-body"><div class="sphere-body-inner">
+      <div class="freq-line"><div class="fl-head"><span class="fl-name" style="color:var(--shadow)">🌑 ${s.shadow}</span><span class="fl-tag badge-shadow">Shadow</span></div><p>${s.sd}</p></div>
+      <div class="freq-line"><div class="fl-head"><span class="fl-name" style="color:var(--gift)">🎁 ${s.gift}</span><span class="fl-tag badge-gift">Gift</span></div><p>${s.gd}</p></div>
+      <div class="freq-line"><div class="fl-head"><span class="fl-name" style="color:var(--siddhi)">✨ ${s.siddhi}</span><span class="fl-tag badge-siddhi">Siddhi</span></div><p>${s.si}</p></div>
+      ${genius}
+      <div class="line-theme"><b>Line ${s.line} · ${s.linekey}.</b> ${BLINES[s.line]}</div>
+      <div class="freqpick">
+        <div class="fp-label">🧭 Where does she sense herself in this key today?</div>
+        <div class="fp-btns" id="bfp-${s.id}">
+          <button onclick="bSetFreq('${s.id}','shadow')" class="${cur==='shadow'?'on-shadow':''}">🌑 Shadow</button>
+          <button onclick="bSetFreq('${s.id}','gift')" class="${cur==='gift'?'on-gift':''}">🎁 Gift</button>
+          <button onclick="bSetFreq('${s.id}','siddhi')" class="${cur==='siddhi'?'on-siddhi':''}">✨ Siddhi</button>
+        </div>
+        <button class="contbtn" onclick="bQuickJournal('${s.id}')">✎ Log a contemplation on ${s.name}</button>
+      </div>
+    </div></div>
+  </div>`;
+}
+function bRenderSpheres(){["activation","venus","pearl"].forEach(seq=>{const g=document.getElementById("brit-"+seq);if(g)g.innerHTML=BSPH.filter(s=>s.seq===seq).map(bcard).join("");});}
+function bToggle(id){const el=document.getElementById("bsph-"+id);if(el)el.classList.toggle("open");}
+function bSyncFreqUI(){BSPH.forEach(s=>{const box=document.getElementById("bfp-"+s.id);if(!box)return;const cur=BSTATE.freq[s.id]||"shadow";[...box.children].forEach((b,i)=>{const fr=["shadow","gift","siddhi"][i];b.className=fr===cur?"on-"+fr:"";});});}
+function bSetFreq(id,f){
+  BSTATE.freq[id]=f;bSyncFreqUI();bUpdateField();bDrawMap();
+  if(bdb&&BFB){const{doc,setDoc,serverTimestamp}=BFB;setDoc(doc(bdb,BC_FREQ,id),{sphere:id,freq:f,updatedAt:serverTimestamp(),createdAt:serverTimestamp()},{merge:true}).catch(err=>{bSetSync("error","sync error");bToast("Couldn't save: "+(err.code||err.message));});}
+  else{bSaveMirror();}
+}
+/* ---- frequency field ---- */
+function bUpdateField(){
+  let c={shadow:0,gift:0,siddhi:0};BSPH.forEach(s=>{c[BSTATE.freq[s.id]||"shadow"]++;});const tot=BSPH.length;
+  const sp=document.getElementById("b-spectrum");if(sp){sp.querySelector(".sp-shadow").style.width=(c.shadow/tot*100)+"%";sp.querySelector(".sp-gift").style.width=(c.gift/tot*100)+"%";sp.querySelector(".sp-siddhi").style.width=(c.siddhi/tot*100)+"%";}
+  const set=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  set("b-c-shadow",c.shadow);set("b-c-gift",c.gift);set("b-c-siddhi",c.siddhi);
+  set("b-stat-entries",BSTATE.entries.length);
+  set("b-stat-active",BSPH.filter(s=>BSTATE.freq[s.id]&&BSTATE.freq[s.id]!=="shadow").length);
+  let days=0;if(BSTATE.started){const d0=new Date(BSTATE.started);if(!isNaN(d0))days=Math.max(0,Math.round((new Date()-d0)/86400000));}
+  set("b-stat-days",days);
+}
+/* ---- constellation ---- */
+function bDrawMap(){
+  const svg=document.getElementById("b-constellation");if(!svg)return;const pos={};BSPH.forEach(s=>pos[s.id]=s);let out="";
+  out+='<circle cx="380" cy="280" r="250" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>';
+  out+='<circle cx="380" cy="280" r="250" fill="none" stroke="rgba(224,103,154,0.08)" stroke-width="6"/>';
+  B_EDGES.forEach(([a,b])=>{if(pos[a]&&pos[b])out+=`<line x1="${pos[a].x}" y1="${pos[a].y}" x2="${pos[b].x}" y2="${pos[b].y}" stroke="rgba(255,255,255,0.13)" stroke-width="1.2"/>`;});
+  BSPH.forEach(s=>{const f=BSTATE.freq[s.id]||"shadow";const col=B_FREQ_COLORS[f];const seqcol=B_SEQ_COLOR[s.seq];
+    out+=`<g class="node" onclick="bJump('${s.id}')"><circle class="glow" cx="${s.x}" cy="${s.y}" r="30" fill="${col}" opacity="0.18"/><circle class="hit" cx="${s.x}" cy="${s.y}" r="21" fill="${col}" stroke="${seqcol}" stroke-width="2"/><text class="node-key" x="${s.x}" y="${s.y+2}">${s.key}<tspan font-size="9" dy="-4">.${s.line}</tspan></text><text class="node-label" x="${s.x}" y="${s.y+34}">${s.name}</text></g>`;});
+  svg.innerHTML=out;
+}
+function bJump(id){const s=BSPH.find(x=>x.id===id);document.getElementById("b-"+s.seq).scrollIntoView({behavior:"smooth"});const el=document.getElementById("bsph-"+id);if(el&&!el.classList.contains("open"))el.classList.add("open");}
+/* ---- journal ---- */
+function bInitJournal(){
+  const sel=document.getElementById("b-j-key");if(sel)sel.innerHTML=BSPH.map(s=>`<option value="${s.id}">${s.name} — ${s.key}.${s.line} (${s.shadow}→${s.siddhi})</option>`).join("");
+  const dt=document.getElementById("b-j-date");if(dt)dt.value=new Date().toISOString().slice(0,10);
+  const fb=document.getElementById("b-j-freq");if(fb)[...fb.children].forEach(b=>b.onclick=()=>{[...fb.children].forEach(x=>x.className="");b.className="on-"+b.dataset.f;});
+}
+function bCurFreq(){const on=document.querySelector("#b-j-freq button[class^='on']");return on?on.dataset.f:"gift";}
+async function bAddEntry(){
+  const key=document.getElementById("b-j-key").value;const note=document.getElementById("b-j-note").value.trim();
+  const date=document.getElementById("b-j-date").value||new Date().toISOString().slice(0,10);const freq=bCurFreq();
+  if(!note){bToast("Add a reflection first ✎");return;}
+  document.getElementById("b-j-note").value="";
+  if(bdb&&BFB){try{const{collection,addDoc,serverTimestamp}=BFB;await addDoc(collection(bdb,BC_ENTRIES),{key,note,date,freq,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});bToast("Contemplation logged ✦");}catch(err){bSetSync("error","sync error");bToast("Couldn't save: "+(err.code||err.message));}}
+  else{BSTATE.entries.unshift({id:"local-"+Date.now(),key,note,date,freq,createdAt:{seconds:Date.now()/1000}});bSaveMirror();bRenderTimeline();bUpdateField();bToast("Saved locally (offline)");}
+}
+async function bDelEntry(id){
+  if(bdb&&BFB&&!String(id).startsWith("local-")){try{const{doc,deleteDoc}=BFB;await deleteDoc(doc(bdb,BC_ENTRIES,id));}catch(err){bToast("Couldn't delete: "+(err.code||err.message));}}
+  else{BSTATE.entries=BSTATE.entries.filter(e=>e.id!==id);bSaveMirror();bRenderTimeline();bUpdateField();}
+}
+function bRenderTimeline(){
+  const tl=document.getElementById("b-timeline");if(!tl)return;
+  if(!BSTATE.entries.length){tl.innerHTML='<div class="tl-empty">Her journey begins with a single contemplation.</div>';return;}
+  const sorted=[...BSTATE.entries].sort((a,b)=>(b.date||"").localeCompare(a.date||"")||(((b.createdAt&&b.createdAt.seconds)||0)-((a.createdAt&&a.createdAt.seconds)||0)));
+  tl.innerHTML=sorted.map(e=>{const s=BSPH.find(x=>x.id===e.key)||{name:e.key,key:"",line:""};const col=B_FREQ_COLORS[e.freq];const fn={shadow:"🌑 Shadow",gift:"🎁 Gift",siddhi:"✨ Siddhi"}[e.freq];
+    return `<div class="tl-item"><span class="tl-dot" style="background:${col}"></span><span class="tl-del" onclick="bDelEntry('${e.id}')">✕</span><div class="tl-date">${bFmtDate(e.date)}</div><div class="tl-key">${s.name} <span style="color:var(--faint);font-size:15.5px">${s.key}.${s.line}</span> <span class="tl-freq" style="background:${col}22;color:${col}">${fn}</span></div><div class="tl-note">${bEsc(e.note)}</div></div>`;}).join("");
+}
+function bQuickJournal(id){document.getElementById("b-journal").scrollIntoView({behavior:"smooth"});document.getElementById("b-j-key").value=id;const f=BSTATE.freq[id]||"gift";const fb=document.getElementById("b-j-freq");[...fb.children].forEach(b=>b.className=b.dataset.f===f?"on-"+f:"");setTimeout(()=>document.getElementById("b-j-note").focus(),500);}
+/* ---- export / import ---- */
+function bExport(){const blob=new Blob([JSON.stringify(BSTATE,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="brittany-genekeys-journey.json";a.click();URL.revokeObjectURL(url);bToast("Backup exported ⬇");}
+function bImport(ev){const f=ev.target.files[0];if(!f)return;const r=new FileReader();r.onload=async()=>{try{const d=JSON.parse(r.result);
+  if(bdb&&BFB){const{doc,setDoc,collection,addDoc,serverTimestamp}=BFB;const freq=d.freq||{};await Promise.all(Object.keys(freq).map(id=>setDoc(doc(bdb,BC_FREQ,id),{sphere:id,freq:freq[id],updatedAt:serverTimestamp(),createdAt:serverTimestamp()},{merge:true})));for(const e of (d.entries||[])){await addDoc(collection(bdb,BC_ENTRIES),{key:e.key,note:e.note,date:e.date,freq:e.freq,createdAt:serverTimestamp(),updatedAt:serverTimestamp()});}bToast("Journey imported to cloud ⬆");}
+  else{BSTATE.freq=d.freq||{};BSTATE.entries=(d.entries||[]).map((e,i)=>Object.assign({id:e.id||"local-"+(Date.now()+i)},e));bSaveMirror();bSyncFreqUI();bRenderTimeline();bUpdateField();bDrawMap();bToast("Journey imported (local)");}
+  }catch(e){bToast("Couldn't read that file");}};r.readAsText(f);}
+/* ---- star pearl ---- */
+function bRenderStarPearl(){
+  const sp=document.getElementById("brit-starpearl");if(!sp)return;
+  const rows=B_STARPEARL.spheres.map(p=>`<div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;padding:9px 0;border-top:1px solid var(--border)"><b style="font-family:var(--serif);font-size:17px;min-width:110px">${p.n}</b><span style="color:var(--siddhi-2);font-weight:600">${p.k}</span><span style="color:var(--shadow)">${p.s}</span><span style="color:var(--faint)">→</span><span style="color:var(--gift)">${p.g}</span><span style="color:var(--faint)">→</span><span style="color:var(--siddhi)">${p.d}</span><span style="color:var(--faint);margin-left:auto">Line ${p.k.split(".")[1]} · ${p.lk}</span></div>`).join("");
+  sp.innerHTML=`<div class="card"><span class="seq-tag tag-pearl" style="margin-bottom:12px">⭐ Star Pearl · The next octave</span><h3 style="margin-bottom:6px">Star Pearl</h3><div class="lead" style="margin-bottom:14px">${B_STARPEARL.summary}</div>${rows}</div>`;
+}
+/* ---- cloud ---- */
+async function bInitCloud(){
+  bSetSync("connecting","connecting…");
+  try{
+    const[appMod,fsMod]=await Promise.all([import("https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js"),import("https://www.gstatic.com/firebasejs/10.14.1/firebase-firestore.js")]);
+    BFB=fsMod;const app=appMod.initializeApp(bFirebaseConfig,"britt");bdb=BFB.getFirestore(app);bSubscribe();
+  }catch(e){console.warn("Brittany cloud unavailable — local only:",e);bSetSync("error","offline · local only");bLoadMirror();bSyncFreqUI();bRenderTimeline();bUpdateField();bDrawMap();}
+}
+function bSubscribe(){
+  const{collection,doc,onSnapshot,query,orderBy,setDoc,serverTimestamp}=BFB;
+  onSnapshot(collection(bdb,BC_FREQ),snap=>{const f={};snap.forEach(d=>{const v=d.data();if(v&&v.freq)f[d.id]=v.freq;});BSTATE.freq=f;bSetSync("synced","synced");bSaveMirror();bSyncFreqUI();bUpdateField();bDrawMap();},err=>{bSetSync("error","sync error");});
+  onSnapshot(query(collection(bdb,BC_ENTRIES),orderBy("createdAt","desc")),snap=>{const arr=[];snap.forEach(d=>arr.push(Object.assign({id:d.id},d.data())));BSTATE.entries=arr;bSaveMirror();bRenderTimeline();bUpdateField();},err=>{});
+  onSnapshot(doc(bdb,BC_META,"main"),d=>{if(!d.exists()){const today=new Date().toISOString().slice(0,10);setDoc(doc(bdb,BC_META,"main"),{startedAt:today,createdAt:serverTimestamp()}).catch(()=>{});BSTATE.started=today;}else{BSTATE.started=d.data().startedAt||BSTATE.started;}bSaveMirror();bUpdateField();},err=>{});
+}
+/* ---- expose + boot ---- */
+Object.assign(window,{bToggle,bSetFreq,bAddEntry,bDelEntry,bQuickJournal,bJump,bExport,bImport});
+bLoadMirror();bRenderSeqs();bRenderSpheres();bRenderStarPearl();bInitJournal();bSyncFreqUI();bRenderTimeline();bDrawMap();bUpdateField();
+bInitCloud();
+</script>
+
+<!-- ==================== SCROLLING SIDE NAME ==================== -->
+<script>
 (function(){
-  var BLINES={
-    1:"The Investigator — depth before breadth; must feel secure in its own knowing before it acts.",
-    2:"The Natural — an innate, effortless gift that emerges on its own and is called out by others.",
-    3:"The Martyr — wisdom earned through trial, error and resilience; learning by direct experience.",
-    4:"The Opportunist — a relational line; the gift travels heart to heart through your network.",
-    5:"The Heretic — a universal, projected line; practical, far-reaching, others project a field onto you.",
-    6:"The Role Model — experience, withdrawal, then embodiment; in time you become a living example."
-  };
-  function borb(seq){
-    var base = seq==="activation"?"90,169,230":seq==="venus"?"224,103,154":"104,195,176";
-    return "radial-gradient(circle at 35% 30%, rgba("+base+",1), rgba("+base+",.55) 60%, rgba("+base+",.25))";
+  var el=document.getElementById("sidename"),txt=document.getElementById("sidename-text"),brit=document.getElementById("brittany");
+  if(!el||!txt||!brit)return;
+  var raf=0;
+  function upd(){
+    raf=0;
+    var mark=window.pageYOffset+window.innerHeight*0.42;
+    var isB=mark>=brit.offsetTop;
+    txt.textContent=isB?"Brittany":"Dreco";
+    el.className="sidename "+(isB?"brittany":"dreco");
   }
-  var CHEV='<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-
-  var SEQS=[
-    {c:"activation",tag:"tag-activation",emoji:"☀️",title:"Activation",lead:"Her deepest <b>Purpose</b> is to manifest the <b style='color:var(--gift)'>Gift of Resolve</b>. To realise it she transforms the <b style='color:var(--shadow)'>Shadow of Exhaustion</b>."},
-    {c:"venus",tag:"tag-venus",emoji:"💗",title:"Venus",lead:"In <b>relationships</b> her great challenge is to transform the <b style='color:var(--shadow)'>Shadow of Stress</b> into the <b style='color:var(--gift)'>Gift of Restraint</b>. The highest expression of her heart is <b style='color:var(--siddhi)'>Awakening</b>."},
-    {c:"pearl",tag:"tag-pearl",emoji:"🐚",title:"Pearl",lead:"She unlocks prosperity through her <b style='color:var(--gift)'>Gift of Integrity</b>, and undermines it through the <b style='color:var(--shadow)'>Shadow of Inadequacy</b>. She thrives best in a position of <b>leadership or influence</b>."}
-  ];
-
-  var SPH=[
-    // ACTIVATION
-    {id:"lifeswork",seq:"activation",emoji:"🌟",name:"Life's Work",role:"How she's here to shine & create in the world",desig:"Activation · Conscious Sun",key:20,line:5,linekey:"Fixer",
-      shadow:"Superficiality",gift:"Self-Assurance",siddhi:"Presence",
-      sd:"Living on the surface — filling the moment with busyness or words, acting on autopilot rather than being truly present.",
-      gd:"Effortless self-assurance in the now. She improvises brilliantly under pressure, fully present, trusting her reflexes where others freeze.",
-      si:"Presence itself — pure being with no agenda. Action and stillness become one and life simply moves through her.",
-      genius:"Her gift is to improvise in the present moment. She thrives in extreme situations when others wilt. With Self-Assurance as her Life's Work, she needs an occupation that challenges her by testing her reflexes — when she is fully in her own centre, nothing can disturb her focus on what is right in front of her. This Gift comes alive in the present, so she can't plan what she'll say or do; she simply sees what happens."},
-    {id:"evolution",seq:"activation",emoji:"🧗",name:"Evolution",role:"The core challenge that catalyses her growth",desig:"Activation · Conscious Earth",key:34,line:5,linekey:"Power & Projection",
-      shadow:"Force",gift:"Strength",siddhi:"Majesty",
-      sd:"Raw force — pushing, overpowering, or acting from restlessness and ego rather than true alignment.",
-      gd:"Strength in right action. She moves with natural power and efficiency, doing what is authentically hers to do.",
-      si:"Majesty — power surrendered to the whole; strength becomes a dignified, effortless radiance.",
-      genius:"Her challenge is to always keep herself occupied — she is a creature of action, and the moment she overthinks her life she gets tangled. Worry is her archenemy; when she worries she misses how beautiful life is right now. If she feels frustrated it's because she's not in action — so take action! It barely matters what, as long as her body keeps moving. She's a master of efficiency, with a knack for doing anything in the way that meets least resistance, and out of her head it brings her great recognition."},
-    {id:"radiance",seq:"activation",emoji:"☀️",name:"Radiance",role:"Her health, vitality & how she radiates when aligned",desig:"Activation · Design Sun",key:37,line:1,linekey:"Isolation / Care",
-      shadow:"Weakness",gift:"Equality",siddhi:"Tenderness",
-      sd:"Weakness — bargaining in relationships, giving in order to receive, or collapsing under the need for warmth and belonging.",
-      gd:"Equality and warmth. She builds family and belonging wherever she goes, giving from genuine friendliness rather than obligation.",
-      si:"Tenderness — unconditional warmth that holds everyone as family, radiating gentle, boundless love.",
-      genius:"One of the most important things for her is to live among other people — as part of a family, group, or business. Living completely alone stresses her inner being and can even affect her physical health; her whole being thrives on human interaction and touch. Solitude still matters, but her natural friendliness needs regular physical, personal expression or she loses energy. Her other key is to let go of giving conditionally — the more unconditionally she gives of herself, the happier and lighter she feels."},
-    {id:"purpose",seq:"activation",emoji:"🎯",name:"Purpose",role:"The deep inner purpose that stabilises her",desig:"Activation · Design Earth",key:40,line:1,linekey:"Physicality (bones)",
-      shadow:"Exhaustion",gift:"Resolve",siddhi:"Divine Will",
-      sd:"Exhaustion — over-giving to depletion, unable to say no or set the boundary her body is asking for.",
-      gd:"Resolve. She stands firm in her own needs, bringing grounding and stability to any group she serves.",
-      si:"Divine Will — personal will surrendered to a greater will; rest and action flow in sacred rhythm.",
-      genius:"If she fulfils her Life's Work she'll be instrumental in building something involving a group of people. Her role is critical, because she is the one who stands firm in her own needs — and in taking that stand she brings grounding and stability to the whole group. Her life is a symbol of healthy boundaries and the strength to stand up for oneself. She's here to sing out with the power of her own aloneness, even in the most intimate relationships; and it's in those precious solitary moments that she feels her true purpose most clearly."},
-
-    // VENUS
-    {id:"attraction",seq:"venus",emoji:"🧲",name:"Attraction",role:"The wound around which love & relationships gather",desig:"Venus · Design Moon",key:21,line:2,linekey:"Lust / Passion",
-      shadow:"Control",gift:"Authority",siddhi:"Valor",
-      sd:"Control — the urge to manage or grip tightly, often from a fear of being controlled herself.",
-      gd:"Authority. She takes fair command of her own domain, leading through earned respect rather than force.",
-      si:"Valor — a fearless heart that acts with noble courage, using power only in service of the whole."},
-    {id:"iq",seq:"venus",emoji:"🧠",name:"IQ",role:"Mental intelligence — how she thinks under pressure",desig:"Venus · Mental",key:51,line:5,linekey:"The Practical mind (defensive)",
-      shadow:"Agitation",gift:"Initiative",siddhi:"Awakening",
-      sd:"Agitation — reactive shock and restlessness, thrown off-centre by the unexpected, competing to feel alive.",
-      gd:"Initiative. A pioneer who moves first, using shock and challenge as fuel for courageous new beginnings.",
-      si:"Awakening — every disturbance becomes a doorway to sudden, total awakening."},
-    {id:"eq",seq:"venus",emoji:"💗",name:"EQ",role:"Emotional intelligence — her feeling nature",desig:"Venus · Emotional",key:7,line:1,linekey:"Self-esteem / Self-sabotage",
-      shadow:"Division",gift:"Guidance",siddhi:"Virtue",
-      sd:"Division — leadership pulled into self-interest and 'us vs them', pushing an agenda instead of serving the whole.",
-      gd:"Guidance. She leads by seeing the road ahead and lighting the way — guiding through service, not control.",
-      si:"Virtue — leadership as pure alignment, where her very presence becomes the way."},
-    {id:"sq",seq:"venus",emoji:"🕊️",name:"SQ",role:"Spiritual intelligence — where wisdom integrates",desig:"Venus · Integrating",key:51,line:2,linekey:"Freedom (wildness & boundaries)",
-      shadow:"Agitation",gift:"Initiative",siddhi:"Awakening",
-      sd:"Agitation — the same restlessness at a deeper layer, testing her freedom against every boundary.",
-      gd:"Initiative. Her wild, pioneering spirit integrates as the courage to begin again and lead from the front.",
-      si:"Awakening — the shock of realisation that liberates her spirit into fearless aliveness."},
-    {id:"core",seq:"venus",emoji:"💎",name:"Core",role:"The Core Wound — her deepest gift in disguise",desig:"Venus · Core Wound",key:52,line:6,linekey:"Stepping beyond Comfort",
-      shadow:"Stress",gift:"Restraint",siddhi:"Stillness",
-      sd:"Stress — pressure that won't switch off, a restlessness that struggles to be still and drives her hard.",
-      gd:"Restraint. She harnesses stillness into concentrated, focused power — knowing when to hold and when to act.",
-      si:"Stillness — the mountain at rest; perfect inner quiet from which all right action naturally arises."},
-
-    // PEARL
-    {id:"culture",seq:"pearl",emoji:"🌍",name:"Culture",role:"Her relationship with the wider world & environment",desig:"Pearl · Culture",key:48,line:5,linekey:"The Society",
-      shadow:"Inadequacy",gift:"Resourcefulness",siddhi:"Wisdom",
-      sd:"Inadequacy — the fear of not being (or knowing) enough, freezing her before she begins.",
-      gd:"Resourcefulness. She draws on a deep well of practical wisdom, finding exactly what's needed when it's needed.",
-      si:"Wisdom — the fathomless depth; a clear channel of timeless, universal knowing."},
-    {id:"pearl",seq:"pearl",emoji:"🦪",name:"Pearl",role:"Natural prosperity that flows from selfless service",desig:"Pearl · The Pearl",key:18,line:2,linekey:"Recognition",
-      shadow:"Judgment",gift:"Integrity",siddhi:"Perfection",
-      sd:"Judgment — a critical eye turned harshly on herself and others, fixated on what's wrong.",
-      gd:"Integrity. She sees what can be improved and mends it with love, upholding fairness and healthy patterns for all.",
-      si:"Perfection — seeing the wholeness already present; everything, exactly as it is, is perfect."}
-  ];
-
-  var STARPEARL={
-    summary:"She embodies <b style='color:var(--siddhi)'>Harmony</b> when grounded in her <b style='color:var(--gift)'>Gift of Revolution</b>. As she heals the wound of <b style='color:var(--shadow)'>Hunger</b> in relationships, she awakens the creative essence of <b style='color:var(--siddhi)'>Ascension</b>.",
-    spheres:[
-      {n:"Brand",k:"20.5",s:"Superficiality",g:"Self-Assurance",d:"Presence",lk:"Efficiency"},
-      {n:"Creativity",k:"54.6",s:"Greed",g:"Aspiration",d:"Ascension",lk:"Synchronicity"},
-      {n:"Relating",k:"35.5",s:"Hunger",g:"Adventure",d:"Boundlessness",lk:"Distillation"},
-      {n:"Pearl",k:"18.2",s:"Judgment",g:"Integrity",d:"Perfection",lk:"Recognition"},
-      {n:"Vocation",k:"52.6",s:"Stress",g:"Restraint",d:"Stillness",lk:"Stepping beyond Comfort"},
-      {n:"Culture",k:"48.5",s:"Inadequacy",g:"Resourcefulness",d:"Wisdom",lk:"The Society"},
-      {n:"Stability",k:"49.5",s:"Reaction",g:"Revolution",d:"Rebirth",lk:"Coherence"}
-    ]
-  };
-
-  function bcard(s){
-    var genius = s.genius ? '<div class="line-theme" style="border-left-color:var(--siddhi-2);background:rgba(201,169,78,.06)"><b style="color:var(--siddhi-2)">✦ Her genius:</b> '+s.genius+'</div>' : '';
-    return ''+
-    '<div class="sphere" id="bsph-'+s.id+'" data-seq="'+s.seq+'">'+
-      '<div class="sphere-top" onclick="britToggle(\''+s.id+'\')">'+
-        '<div class="keyorb" style="background:'+borb(s.seq)+'"><span class="num">'+s.key+'</span><span class="ln">line '+s.line+'</span></div>'+
-        '<div class="sphere-meta">'+
-          '<div class="sname">'+s.emoji+' '+s.name+'</div>'+
-          '<div class="srole">'+s.role+'</div>'+
-          '<div class="sdesig">'+s.desig+' · '+s.key+'.'+s.line+'</div>'+
-        '</div>'+CHEV+
-      '</div>'+
-      '<div class="triad-mini">'+
-        '<span class="tm-shadow">'+s.shadow+'</span>'+
-        '<span class="tm-gift">'+s.gift+'</span>'+
-        '<span class="tm-siddhi">'+s.siddhi+'</span>'+
-      '</div>'+
-      '<div class="sphere-body"><div class="sphere-body-inner">'+
-        '<div class="freq-line"><div class="fl-head"><span class="fl-name" style="color:var(--shadow)">🌑 '+s.shadow+'</span><span class="fl-tag badge-shadow">Shadow</span></div><p>'+s.sd+'</p></div>'+
-        '<div class="freq-line"><div class="fl-head"><span class="fl-name" style="color:var(--gift)">🎁 '+s.gift+'</span><span class="fl-tag badge-gift">Gift</span></div><p>'+s.gd+'</p></div>'+
-        '<div class="freq-line"><div class="fl-head"><span class="fl-name" style="color:var(--siddhi)">✨ '+s.siddhi+'</span><span class="fl-tag badge-siddhi">Siddhi</span></div><p>'+s.si+'</p></div>'+
-        genius+
-        '<div class="line-theme"><b>Line '+s.line+' · '+s.linekey+'.</b> '+BLINES[s.line]+'</div>'+
-      '</div></div>'+
-    '</div>';
-  }
-
-  function render(){
-    // sequence summary cards
-    var sc=document.getElementById("brit-seqcards");
-    if(sc) sc.innerHTML=SEQS.map(function(q){
-      return '<div class="card"><span class="seq-tag '+q.tag+'" style="margin-bottom:12px">'+q.emoji+' '+q.title+' Sequence</span><p class="lead" style="margin-bottom:0">'+q.lead+'</p></div>';
-    }).join("");
-    // spheres by sequence
-    ["activation","venus","pearl"].forEach(function(seq){
-      var g=document.getElementById("brit-"+seq);
-      if(g) g.innerHTML=SPH.filter(function(s){return s.seq===seq;}).map(bcard).join("");
-    });
-    // star pearl
-    var sp=document.getElementById("brit-starpearl");
-    if(sp){
-      var rows=STARPEARL.spheres.map(function(p){
-        return '<div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;padding:9px 0;border-top:1px solid var(--border)">'+
-          '<b style="font-family:var(--serif);font-size:17px;min-width:110px">'+p.n+'</b>'+
-          '<span style="color:var(--siddhi-2);font-weight:600">'+p.k+'</span>'+
-          '<span style="color:var(--shadow)">'+p.s+'</span><span style="color:var(--faint)">→</span>'+
-          '<span style="color:var(--gift)">'+p.g+'</span><span style="color:var(--faint)">→</span>'+
-          '<span style="color:var(--siddhi)">'+p.d+'</span>'+
-          '<span style="color:var(--faint);margin-left:auto">Line '+p.k.split(".")[1]+' · '+p.lk+'</span>'+
-        '</div>';
-      }).join("");
-      sp.innerHTML='<div class="card">'+
-        '<span class="seq-tag tag-pearl" style="margin-bottom:12px">⭐ Star Pearl · The next octave</span>'+
-        '<h3 style="margin-bottom:6px">Star Pearl</h3>'+
-        '<div class="lead" style="margin-bottom:14px">'+STARPEARL.summary+'</div>'+
-        rows+
-      '</div>';
-    }
-  }
-  window.britToggle=function(id){var el=document.getElementById("bsph-"+id);if(el)el.classList.toggle("open");};
-  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",render);}else{render();}
+  function onScroll(){if(!raf)raf=requestAnimationFrame(upd);}
+  window.addEventListener("scroll",onScroll,{passive:true});
+  window.addEventListener("resize",onScroll);
+  upd();
 })();
 </script>
 
