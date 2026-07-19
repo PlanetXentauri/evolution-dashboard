@@ -279,6 +279,7 @@ footer .fq{font-family:var(--serif);font-style:italic;font-size:17px;color:var(-
     <a href="#pearl">🐚 Pearl</a>
     <a href="#journal">📔 Journal</a>
     <a href="#future">🔮 Expansion</a>
+    <a href="#brittany">🌙 Brittany</a>
     <a href="#journal" class="cta" onclick="exportData();return false;">⬇️ Export</a>
   </nav>
 </div></div>
@@ -412,6 +413,214 @@ footer .fq{font-family:var(--serif);font-style:italic;font-size:17px;color:var(-
   </div>
   <div class="future-grid" id="future-grid"></div>
 </div></section>
+
+<!-- BRITTANY PROFILE -->
+<section id="brittany"><div class="wrap">
+  <div class="sec-head">
+    <div class="eyebrow">🌙 A second constellation · shared for contemplation</div>
+    <h2>Brittany <span class="grad">— her Hologenetic Profile</span></h2>
+    <p>Brittany's complete Gene Keys map — the same <b style="color:var(--shadow)">Shadow</b> → <b style="color:var(--gift)">Gift</b> → <b style="color:var(--siddhi)">Siddhi</b> journey, drawn from her own genekeys.com profile and made for her. Tap any sphere to open its three frequencies and the genius hidden inside.</p>
+    <div class="birthchip">
+      <span>🗓 <b>25 May 1993</b></span>
+      <span>🕔 <b>5:11 AM</b></span>
+      <span>📍 <b>Jacksonville, Florida, USA</b></span>
+    </div>
+  </div>
+
+  <div class="field-grid" id="brit-seqcards" style="grid-template-columns:1fr 1fr 1fr;gap:16px"></div>
+
+  <div class="sec-head" style="margin-top:38px;margin-bottom:18px">
+    <span class="seq-tag tag-activation">☀️ Activation Sequence · The Four Prime Gifts</span>
+    <h2 style="font-size:clamp(22px,2.6vw,28px)">Her genius</h2>
+  </div>
+  <div class="spheres" id="brit-activation"></div>
+
+  <div class="sec-head" style="margin-top:38px;margin-bottom:18px">
+    <span class="seq-tag tag-venus">💗 Venus Sequence · The Pathway of the Heart</span>
+    <h2 style="font-size:clamp(22px,2.6vw,28px)">Her heart</h2>
+  </div>
+  <div class="spheres" id="brit-venus"></div>
+
+  <div class="sec-head" style="margin-top:38px;margin-bottom:18px">
+    <span class="seq-tag tag-pearl">🐚 Pearl Sequence · The Pathway of Prosperity</span>
+    <h2 style="font-size:clamp(22px,2.6vw,28px)">Her prosperity</h2>
+  </div>
+  <div class="spheres" id="brit-pearl"></div>
+
+  <div id="brit-starpearl" style="margin-top:38px"></div>
+</div></section>
+
+<script>
+/* ============================================================
+   BRITTANY — Hologenetic Profile (static reference view)
+   Data transcribed from her genekeys.com profile PDF.
+   Independent of the sync layer above — a contemplation map.
+   ============================================================ */
+(function(){
+  var BLINES={
+    1:"The Investigator — depth before breadth; must feel secure in its own knowing before it acts.",
+    2:"The Natural — an innate, effortless gift that emerges on its own and is called out by others.",
+    3:"The Martyr — wisdom earned through trial, error and resilience; learning by direct experience.",
+    4:"The Opportunist — a relational line; the gift travels heart to heart through your network.",
+    5:"The Heretic — a universal, projected line; practical, far-reaching, others project a field onto you.",
+    6:"The Role Model — experience, withdrawal, then embodiment; in time you become a living example."
+  };
+  function borb(seq){
+    var base = seq==="activation"?"90,169,230":seq==="venus"?"224,103,154":"104,195,176";
+    return "radial-gradient(circle at 35% 30%, rgba("+base+",1), rgba("+base+",.55) 60%, rgba("+base+",.25))";
+  }
+  var CHEV='<svg class="chev" width="16" height="16" viewBox="0 0 24 24" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+  var SEQS=[
+    {c:"activation",tag:"tag-activation",emoji:"☀️",title:"Activation",lead:"Her deepest <b>Purpose</b> is to manifest the <b style='color:var(--gift)'>Gift of Resolve</b>. To realise it she transforms the <b style='color:var(--shadow)'>Shadow of Exhaustion</b>."},
+    {c:"venus",tag:"tag-venus",emoji:"💗",title:"Venus",lead:"In <b>relationships</b> her great challenge is to transform the <b style='color:var(--shadow)'>Shadow of Stress</b> into the <b style='color:var(--gift)'>Gift of Restraint</b>. The highest expression of her heart is <b style='color:var(--siddhi)'>Awakening</b>."},
+    {c:"pearl",tag:"tag-pearl",emoji:"🐚",title:"Pearl",lead:"She unlocks prosperity through her <b style='color:var(--gift)'>Gift of Integrity</b>, and undermines it through the <b style='color:var(--shadow)'>Shadow of Inadequacy</b>. She thrives best in a position of <b>leadership or influence</b>."}
+  ];
+
+  var SPH=[
+    // ACTIVATION
+    {id:"lifeswork",seq:"activation",emoji:"🌟",name:"Life's Work",role:"How she's here to shine & create in the world",desig:"Activation · Conscious Sun",key:20,line:5,linekey:"Fixer",
+      shadow:"Superficiality",gift:"Self-Assurance",siddhi:"Presence",
+      sd:"Living on the surface — filling the moment with busyness or words, acting on autopilot rather than being truly present.",
+      gd:"Effortless self-assurance in the now. She improvises brilliantly under pressure, fully present, trusting her reflexes where others freeze.",
+      si:"Presence itself — pure being with no agenda. Action and stillness become one and life simply moves through her.",
+      genius:"Her gift is to improvise in the present moment. She thrives in extreme situations when others wilt. With Self-Assurance as her Life's Work, she needs an occupation that challenges her by testing her reflexes — when she is fully in her own centre, nothing can disturb her focus on what is right in front of her. This Gift comes alive in the present, so she can't plan what she'll say or do; she simply sees what happens."},
+    {id:"evolution",seq:"activation",emoji:"🧗",name:"Evolution",role:"The core challenge that catalyses her growth",desig:"Activation · Conscious Earth",key:34,line:5,linekey:"Power & Projection",
+      shadow:"Force",gift:"Strength",siddhi:"Majesty",
+      sd:"Raw force — pushing, overpowering, or acting from restlessness and ego rather than true alignment.",
+      gd:"Strength in right action. She moves with natural power and efficiency, doing what is authentically hers to do.",
+      si:"Majesty — power surrendered to the whole; strength becomes a dignified, effortless radiance.",
+      genius:"Her challenge is to always keep herself occupied — she is a creature of action, and the moment she overthinks her life she gets tangled. Worry is her archenemy; when she worries she misses how beautiful life is right now. If she feels frustrated it's because she's not in action — so take action! It barely matters what, as long as her body keeps moving. She's a master of efficiency, with a knack for doing anything in the way that meets least resistance, and out of her head it brings her great recognition."},
+    {id:"radiance",seq:"activation",emoji:"☀️",name:"Radiance",role:"Her health, vitality & how she radiates when aligned",desig:"Activation · Design Sun",key:37,line:1,linekey:"Isolation / Care",
+      shadow:"Weakness",gift:"Equality",siddhi:"Tenderness",
+      sd:"Weakness — bargaining in relationships, giving in order to receive, or collapsing under the need for warmth and belonging.",
+      gd:"Equality and warmth. She builds family and belonging wherever she goes, giving from genuine friendliness rather than obligation.",
+      si:"Tenderness — unconditional warmth that holds everyone as family, radiating gentle, boundless love.",
+      genius:"One of the most important things for her is to live among other people — as part of a family, group, or business. Living completely alone stresses her inner being and can even affect her physical health; her whole being thrives on human interaction and touch. Solitude still matters, but her natural friendliness needs regular physical, personal expression or she loses energy. Her other key is to let go of giving conditionally — the more unconditionally she gives of herself, the happier and lighter she feels."},
+    {id:"purpose",seq:"activation",emoji:"🎯",name:"Purpose",role:"The deep inner purpose that stabilises her",desig:"Activation · Design Earth",key:40,line:1,linekey:"Physicality (bones)",
+      shadow:"Exhaustion",gift:"Resolve",siddhi:"Divine Will",
+      sd:"Exhaustion — over-giving to depletion, unable to say no or set the boundary her body is asking for.",
+      gd:"Resolve. She stands firm in her own needs, bringing grounding and stability to any group she serves.",
+      si:"Divine Will — personal will surrendered to a greater will; rest and action flow in sacred rhythm.",
+      genius:"If she fulfils her Life's Work she'll be instrumental in building something involving a group of people. Her role is critical, because she is the one who stands firm in her own needs — and in taking that stand she brings grounding and stability to the whole group. Her life is a symbol of healthy boundaries and the strength to stand up for oneself. She's here to sing out with the power of her own aloneness, even in the most intimate relationships; and it's in those precious solitary moments that she feels her true purpose most clearly."},
+
+    // VENUS
+    {id:"attraction",seq:"venus",emoji:"🧲",name:"Attraction",role:"The wound around which love & relationships gather",desig:"Venus · Design Moon",key:21,line:2,linekey:"Lust / Passion",
+      shadow:"Control",gift:"Authority",siddhi:"Valor",
+      sd:"Control — the urge to manage or grip tightly, often from a fear of being controlled herself.",
+      gd:"Authority. She takes fair command of her own domain, leading through earned respect rather than force.",
+      si:"Valor — a fearless heart that acts with noble courage, using power only in service of the whole."},
+    {id:"iq",seq:"venus",emoji:"🧠",name:"IQ",role:"Mental intelligence — how she thinks under pressure",desig:"Venus · Mental",key:51,line:5,linekey:"The Practical mind (defensive)",
+      shadow:"Agitation",gift:"Initiative",siddhi:"Awakening",
+      sd:"Agitation — reactive shock and restlessness, thrown off-centre by the unexpected, competing to feel alive.",
+      gd:"Initiative. A pioneer who moves first, using shock and challenge as fuel for courageous new beginnings.",
+      si:"Awakening — every disturbance becomes a doorway to sudden, total awakening."},
+    {id:"eq",seq:"venus",emoji:"💗",name:"EQ",role:"Emotional intelligence — her feeling nature",desig:"Venus · Emotional",key:7,line:1,linekey:"Self-esteem / Self-sabotage",
+      shadow:"Division",gift:"Guidance",siddhi:"Virtue",
+      sd:"Division — leadership pulled into self-interest and 'us vs them', pushing an agenda instead of serving the whole.",
+      gd:"Guidance. She leads by seeing the road ahead and lighting the way — guiding through service, not control.",
+      si:"Virtue — leadership as pure alignment, where her very presence becomes the way."},
+    {id:"sq",seq:"venus",emoji:"🕊️",name:"SQ",role:"Spiritual intelligence — where wisdom integrates",desig:"Venus · Integrating",key:51,line:2,linekey:"Freedom (wildness & boundaries)",
+      shadow:"Agitation",gift:"Initiative",siddhi:"Awakening",
+      sd:"Agitation — the same restlessness at a deeper layer, testing her freedom against every boundary.",
+      gd:"Initiative. Her wild, pioneering spirit integrates as the courage to begin again and lead from the front.",
+      si:"Awakening — the shock of realisation that liberates her spirit into fearless aliveness."},
+    {id:"core",seq:"venus",emoji:"💎",name:"Core",role:"The Core Wound — her deepest gift in disguise",desig:"Venus · Core Wound",key:52,line:6,linekey:"Stepping beyond Comfort",
+      shadow:"Stress",gift:"Restraint",siddhi:"Stillness",
+      sd:"Stress — pressure that won't switch off, a restlessness that struggles to be still and drives her hard.",
+      gd:"Restraint. She harnesses stillness into concentrated, focused power — knowing when to hold and when to act.",
+      si:"Stillness — the mountain at rest; perfect inner quiet from which all right action naturally arises."},
+
+    // PEARL
+    {id:"culture",seq:"pearl",emoji:"🌍",name:"Culture",role:"Her relationship with the wider world & environment",desig:"Pearl · Culture",key:48,line:5,linekey:"The Society",
+      shadow:"Inadequacy",gift:"Resourcefulness",siddhi:"Wisdom",
+      sd:"Inadequacy — the fear of not being (or knowing) enough, freezing her before she begins.",
+      gd:"Resourcefulness. She draws on a deep well of practical wisdom, finding exactly what's needed when it's needed.",
+      si:"Wisdom — the fathomless depth; a clear channel of timeless, universal knowing."},
+    {id:"pearl",seq:"pearl",emoji:"🦪",name:"Pearl",role:"Natural prosperity that flows from selfless service",desig:"Pearl · The Pearl",key:18,line:2,linekey:"Recognition",
+      shadow:"Judgment",gift:"Integrity",siddhi:"Perfection",
+      sd:"Judgment — a critical eye turned harshly on herself and others, fixated on what's wrong.",
+      gd:"Integrity. She sees what can be improved and mends it with love, upholding fairness and healthy patterns for all.",
+      si:"Perfection — seeing the wholeness already present; everything, exactly as it is, is perfect."}
+  ];
+
+  var STARPEARL={
+    summary:"She embodies <b style='color:var(--siddhi)'>Harmony</b> when grounded in her <b style='color:var(--gift)'>Gift of Revolution</b>. As she heals the wound of <b style='color:var(--shadow)'>Hunger</b> in relationships, she awakens the creative essence of <b style='color:var(--siddhi)'>Ascension</b>.",
+    spheres:[
+      {n:"Brand",k:"20.5",s:"Superficiality",g:"Self-Assurance",d:"Presence",lk:"Efficiency"},
+      {n:"Creativity",k:"54.6",s:"Greed",g:"Aspiration",d:"Ascension",lk:"Synchronicity"},
+      {n:"Relating",k:"35.5",s:"Hunger",g:"Adventure",d:"Boundlessness",lk:"Distillation"},
+      {n:"Pearl",k:"18.2",s:"Judgment",g:"Integrity",d:"Perfection",lk:"Recognition"},
+      {n:"Vocation",k:"52.6",s:"Stress",g:"Restraint",d:"Stillness",lk:"Stepping beyond Comfort"},
+      {n:"Culture",k:"48.5",s:"Inadequacy",g:"Resourcefulness",d:"Wisdom",lk:"The Society"},
+      {n:"Stability",k:"49.5",s:"Reaction",g:"Revolution",d:"Rebirth",lk:"Coherence"}
+    ]
+  };
+
+  function bcard(s){
+    var genius = s.genius ? '<div class="line-theme" style="border-left-color:var(--siddhi-2);background:rgba(201,169,78,.06)"><b style="color:var(--siddhi-2)">✦ Her genius:</b> '+s.genius+'</div>' : '';
+    return ''+
+    '<div class="sphere" id="bsph-'+s.id+'" data-seq="'+s.seq+'">'+
+      '<div class="sphere-top" onclick="britToggle(\''+s.id+'\')">'+
+        '<div class="keyorb" style="background:'+borb(s.seq)+'"><span class="num">'+s.key+'</span><span class="ln">line '+s.line+'</span></div>'+
+        '<div class="sphere-meta">'+
+          '<div class="sname">'+s.emoji+' '+s.name+'</div>'+
+          '<div class="srole">'+s.role+'</div>'+
+          '<div class="sdesig">'+s.desig+' · '+s.key+'.'+s.line+'</div>'+
+        '</div>'+CHEV+
+      '</div>'+
+      '<div class="triad-mini">'+
+        '<span class="tm-shadow">'+s.shadow+'</span>'+
+        '<span class="tm-gift">'+s.gift+'</span>'+
+        '<span class="tm-siddhi">'+s.siddhi+'</span>'+
+      '</div>'+
+      '<div class="sphere-body"><div class="sphere-body-inner">'+
+        '<div class="freq-line"><div class="fl-head"><span class="fl-name" style="color:var(--shadow)">🌑 '+s.shadow+'</span><span class="fl-tag badge-shadow">Shadow</span></div><p>'+s.sd+'</p></div>'+
+        '<div class="freq-line"><div class="fl-head"><span class="fl-name" style="color:var(--gift)">🎁 '+s.gift+'</span><span class="fl-tag badge-gift">Gift</span></div><p>'+s.gd+'</p></div>'+
+        '<div class="freq-line"><div class="fl-head"><span class="fl-name" style="color:var(--siddhi)">✨ '+s.siddhi+'</span><span class="fl-tag badge-siddhi">Siddhi</span></div><p>'+s.si+'</p></div>'+
+        genius+
+        '<div class="line-theme"><b>Line '+s.line+' · '+s.linekey+'.</b> '+BLINES[s.line]+'</div>'+
+      '</div></div>'+
+    '</div>';
+  }
+
+  function render(){
+    // sequence summary cards
+    var sc=document.getElementById("brit-seqcards");
+    if(sc) sc.innerHTML=SEQS.map(function(q){
+      return '<div class="card"><span class="seq-tag '+q.tag+'" style="margin-bottom:12px">'+q.emoji+' '+q.title+' Sequence</span><p class="lead" style="margin-bottom:0">'+q.lead+'</p></div>';
+    }).join("");
+    // spheres by sequence
+    ["activation","venus","pearl"].forEach(function(seq){
+      var g=document.getElementById("brit-"+seq);
+      if(g) g.innerHTML=SPH.filter(function(s){return s.seq===seq;}).map(bcard).join("");
+    });
+    // star pearl
+    var sp=document.getElementById("brit-starpearl");
+    if(sp){
+      var rows=STARPEARL.spheres.map(function(p){
+        return '<div style="display:flex;flex-wrap:wrap;align-items:baseline;gap:8px;padding:9px 0;border-top:1px solid var(--border)">'+
+          '<b style="font-family:var(--serif);font-size:17px;min-width:110px">'+p.n+'</b>'+
+          '<span style="color:var(--siddhi-2);font-weight:600">'+p.k+'</span>'+
+          '<span style="color:var(--shadow)">'+p.s+'</span><span style="color:var(--faint)">→</span>'+
+          '<span style="color:var(--gift)">'+p.g+'</span><span style="color:var(--faint)">→</span>'+
+          '<span style="color:var(--siddhi)">'+p.d+'</span>'+
+          '<span style="color:var(--faint);margin-left:auto">Line '+p.k.split(".")[1]+' · '+p.lk+'</span>'+
+        '</div>';
+      }).join("");
+      sp.innerHTML='<div class="card">'+
+        '<span class="seq-tag tag-pearl" style="margin-bottom:12px">⭐ Star Pearl · The next octave</span>'+
+        '<h3 style="margin-bottom:6px">Star Pearl</h3>'+
+        '<div class="lead" style="margin-bottom:14px">'+STARPEARL.summary+'</div>'+
+        rows+
+      '</div>';
+    }
+  }
+  window.britToggle=function(id){var el=document.getElementById("bsph-"+id);if(el)el.classList.toggle("open");};
+  if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",render);}else{render();}
+})();
+</script>
+
 
 <footer>
   <div class="fq">"The purpose of the Gene Keys is to show you that the very thing you may have spent your life trying to avoid — your Shadow — is the doorway to your genius and your divinity."</div>
